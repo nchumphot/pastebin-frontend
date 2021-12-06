@@ -1,7 +1,9 @@
-import { greet } from "./utils/greet";
+import { PastesDisplay } from "./components/PastesDisplay";
 
 function App(): JSX.Element {
-  return <h1>{greet("World")}</h1>;
+  return (<>
+  <PastesDisplay />
+  </>)
 }
 
 export default App;
