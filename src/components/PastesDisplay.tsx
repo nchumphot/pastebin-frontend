@@ -2,6 +2,7 @@
 // import { fetchData } from "../utils/fetchData";
 import { IPaste } from "../utils/IPaste";
 import { ISO8601toDate } from "../utils/ISO8601toDate";
+import { LineBreak } from "../utils/LineBreak";
 
 export function PastesDisplay(props: {
   setSelection: React.Dispatch<React.SetStateAction<IPaste | undefined>>;
@@ -14,7 +15,7 @@ export function PastesDisplay(props: {
       <div className="paste" key={item.id}>
         {item.title === null ? <h3>Untitled</h3> : <h3>{item.title}</h3>}
         <small>{dateStr}</small>
-        <p>{item.body}</p>
+        <LineBreak str={item.body} isShort={true} />
         <button onClick={() => props.setSelection(item)}>See more</button>
       </div>
     );
