@@ -72,7 +72,8 @@ export function PostModal(props: {
                 onChange={(e) => setTitle(e.target.value)}
               />
               <br />
-              <input
+              <textarea
+                rows={5}
                 id="bodyinput"
                 placeholder="Paste body here"
                 value={body}
