@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
-import { fetchData } from "../utils/fetchData";
+// import { useEffect, useState } from "react";
+// import { fetchData } from "../utils/fetchData";
 import { IPaste } from "../utils/IPaste";
 import { ISO8601toDate } from "../utils/ISO8601toDate";
 
 export function PastesDisplay(props: {
   setSelection: React.Dispatch<React.SetStateAction<IPaste | undefined>>;
+  setPastes: React.Dispatch<React.SetStateAction<IPaste[]>>;
+  pastes: IPaste[];
 }): JSX.Element {
-  const [pastes, setPastes] = useState<IPaste[]>([]);
-
-  useEffect(() => {
-    fetchData("https://pastebin-c3a8.herokuapp.com/pastes/recent", setPastes);
-  }, []);
-
   const PasteItems = (item: IPaste): JSX.Element => {
     const dateStr = ISO8601toDate(item.creation_date);
     return (
@@ -25,7 +21,7 @@ export function PastesDisplay(props: {
   };
   return (
     <div className="pastesdisplay">
-      {pastes.map((paste) => PasteItems(paste))}
+      {props.pastes.map((paste) => PasteItems(paste))}
     </div>
   );
 }
