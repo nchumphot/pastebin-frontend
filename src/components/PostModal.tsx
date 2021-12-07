@@ -9,6 +9,22 @@ export function PostModal(props: {
 }): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
+
+  const handleSubmitPaste = () => {
+    if (body !== "") {
+      postData(title, body).then(() => {
+        fetchData(
+          "https://pastebin-c3a8.herokuapp.com/pastes/recent",
+          props.setPastes
+        );
+      });
+      setTitle("");
+      setBody("");
+    } else {
+      window.alert("Cannot submit a paste with an empty body.");
+    }
+  };
+
   return (
     <>
       <button
@@ -68,16 +84,7 @@ export function PostModal(props: {
                 type="button"
                 data-dismiss="modal"
                 className="btn btn-primary"
-                onClick={() => {
-                  postData(title, body).then(() => {
-                    fetchData(
-                      "https://pastebin-c3a8.herokuapp.com/pastes/recent",
-                      props.setPastes
-                    );
-                    setTitle("");
-                    setBody("");
-                  });
-                }}
+                onClick={handleSubmitPaste}
               >
                 Add
               </button>
