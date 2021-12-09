@@ -1,11 +1,14 @@
 import { IPaste } from "../utils/IPaste";
 import { LineBreak } from "../utils/LineBreak";
 import { ISO8601toDate } from "../utils/ISO8601toDate";
+import { handleDelete } from "../utils/handleDelete";
 
 export function SelectedPaste(props: {
   selection: IPaste | undefined;
+  setSelection: React.Dispatch<React.SetStateAction<IPaste | undefined>>;
 }): JSX.Element {
   if (props.selection !== undefined) {
+    const id = props.selection.id;
     return (
       <div className="selected-paste">
         {props.selection.title === null ? (
@@ -17,6 +20,14 @@ export function SelectedPaste(props: {
           {ISO8601toDate(props.selection.creation_date)}
         </small>
         <LineBreak str={props.selection.body} isShort={false} />
+        <button
+          onClick={() => {
+            handleDelete(id);
+            props.setSelection(undefined);
+          }}
+        >
+          Delete
+        </button>
       </div>
     );
   } else {
