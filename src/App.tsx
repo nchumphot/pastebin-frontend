@@ -5,6 +5,8 @@ import { SelectedPaste } from "./components/SelectedPaste";
 import { IPaste } from "./utils/IPaste";
 import { useEffect } from "react";
 import { fetchData } from "./utils/fetchData";
+import { PageHeader } from "./components/PageHeader";
+import "./App.css";
 
 function App(): JSX.Element {
   const [selection, setSelection] = useState<IPaste | undefined>();
@@ -16,10 +18,12 @@ function App(): JSX.Element {
 
   return (
     <>
+      <PageHeader />
       <PostModal {...{ pastes, setPastes }} />
-      <PastesDisplay setSelection={setSelection} {...{ pastes, setPastes }} />
-      <h1>==========================================</h1>
-      <SelectedPaste selection={selection} />
+      <div className="columns">
+        <PastesDisplay setSelection={setSelection} {...{ pastes, setPastes }} />
+        <SelectedPaste selection={selection} />
+      </div>
     </>
   );
 }

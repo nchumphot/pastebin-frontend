@@ -1,0 +1,76 @@
+.paste {
+  background-color: white;
+  text-align: center;
+  width: 90%;
+  margin: 10px 10px 0 0;
+  padding: 20px;
+  border: 3px groove coral;
+}
+
+.columns {
+  display: flex;
+}
+
+.paste-display {
+  width: 30%;
+  overflow-y: scroll;
+  height: 70vh;
+}
+
+.no-paste-selected {
+  font-size: 30px;
+  padding: 20px;
+}
+
+.selected-paste {
+  width: 70%;
+  padding: 20px;
+}
+
+.paste-title {
+  font-family: "Abril Fatface", cursive;
+}
+
+.selected-paste-title {
+  font-family: "Abril Fatface", cursive;
+  font-size: 50px;
+  padding: 5px;
+}
+
+.selected-paste-date {
+  margin: 10px;
+  padding: 5px;
+}
+
+.paste-body {
+  font-family: "Inconsolata", monospace;
+  text-align: left;
+  background-color: rgb(236, 236, 236);
+  padding: 5px;
+  margin: 10px;
+}
+
+.selected-paste-body {
+  font-family: "Inconsolata", monospace;
+  text-align: left;
+  font-size: 20px;
+  background-color: rgb(236, 236, 236);
+  padding: 5px;
+  margin: 10px;
+}
+
+body {
+  margin: 30px;
+}
+
+header {
+  font-family: "Press Start 2P", cursive;
+}
+
+header > h1 {
+  color: greenyellow;
+}
+
+header > p {
+  color: grey;
+}
