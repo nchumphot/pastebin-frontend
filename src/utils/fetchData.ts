@@ -7,5 +7,5 @@ export async function fetchData(
 ): Promise<void> {
   const response = await fetch(url);
   const jsonBody = await response.json();
-  setState(jsonBody);
+  setState(jsonBody.data);
 }
