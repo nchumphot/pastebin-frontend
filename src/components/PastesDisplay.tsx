@@ -13,7 +13,11 @@ export function PastesDisplay(props: {
     const dateStr = ISO8601toDate(item.creation_date);
     return (
       <div className="paste" key={item.id}>
-        {item.title === null ? <h3>Untitled</h3> : <h3>{item.title}</h3>}
+        {item.title === null ? (
+          <h3 className="paste-title">Untitled</h3>
+        ) : (
+          <h3 className="paste-title">{item.title}</h3>
+        )}
         <small>{dateStr}</small>
         <LineBreak str={item.body} isShort={true} />
         <button onClick={() => props.setSelection(item)}>See more</button>
@@ -21,7 +25,7 @@ export function PastesDisplay(props: {
     );
   };
   return (
-    <div className="pastesdisplay">
+    <div className="paste-display">
       {props.pastes.map((paste) => PasteItems(paste))}
     </div>
   );
