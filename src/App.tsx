@@ -22,7 +22,7 @@ function App(): JSX.Element {
       <PostModal {...{ pastes, setPastes }} />
       <div className="columns">
         <PastesDisplay setSelection={setSelection} {...{ pastes, setPastes }} />
-        <SelectedPaste selection={selection} />
+        <SelectedPaste {...{ selection, setSelection }} />
       </div>
     </>
   );
