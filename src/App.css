@@ -100,3 +100,29 @@ header > p {
   border-color: black;
   border-style: solid;
 }
+
+.see-more-btn {
+  background-color: rgb(197, 197, 197);
+  color: black;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+}
+
+.add-btn {
+  background-color: greenyellow;
+  color: black;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+}
+
+button {
+  opacity: 0.6;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 1;
+}
