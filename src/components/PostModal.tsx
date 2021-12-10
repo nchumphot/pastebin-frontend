@@ -13,9 +13,8 @@ export function PostModal(props: {
   const handleSubmitPaste = () => {
     if (body !== "") {
       postData(title, body).then(() => {
-        fetchData(
-          "https://pastebin-c3a8.herokuapp.com/pastes/recent",
-          props.setPastes
+        fetchData("https://pastebin-c3a8.herokuapp.com/pastes/recent").then(
+          (res) => props.setPastes(res)
         );
       });
       setTitle("");
