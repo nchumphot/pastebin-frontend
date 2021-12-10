@@ -1,30 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { handleEdit } from "../utils/handleEdit";
+import { Fragment } from "react";
+import { IPaste } from "../utils/IPaste";
 
 export function EditModal(props: {
   id: number;
   title: string;
   body: string;
-  //   setPastes: React.Dispatch<React.SetStateAction<IPaste[]>>;
+  setSelectedPaste: React.Dispatch<React.SetStateAction<IPaste>>;
   //   pastes: IPaste[];
 }): JSX.Element {
-  const [title, setTitle] = useState<string>(props.title);
-  const [body, setBody] = useState<string>(props.body);
-
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
+  useEffect(() => {
+    setTitle(props.title);
+    setBody(props.body);
+  }, [props.title, props.body]);
   return (
-    <>
+    <Fragment>
       <button
         type="button"
         className="btn btn-primary"
         data-toggle="modal"
-        data-target="#exampleModal"
+        data-target={`#EditModal${props.id}`}
       >
         Edit
       </button>
 
       <div
         className="modal fade"
-        id="exampleModal"
+        id={`EditModal${props.id}`}
         tabIndex={-1}
         role="dialog"
         aria-labelledby="exampleModalLabel"
@@ -42,8 +47,8 @@ export function EditModal(props: {
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={() => {
-                  setTitle("");
-                  setBody("");
+                  setTitle(props.title);
+                  setBody(props.body);
                 }}
               >
                 <span aria-hidden="true">&times;</span>
@@ -69,7 +74,15 @@ export function EditModal(props: {
                 type="button"
                 data-dismiss="modal"
                 className="btn btn-primary"
-                onClick={() => handleEdit(props.id, props.title, props.body)}
+                onClick={() => {
+                  handleEdit(props.id, title, body);
+                  props.setSelectedPaste({
+                    id: props.id,
+                    title: "",
+                    body: "",
+                    creation_date: "",
+                  });
+                }}
               >
                 Add
               </button>
@@ -77,6 +90,6 @@ export function EditModal(props: {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
