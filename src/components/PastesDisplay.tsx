@@ -5,7 +5,7 @@ import { ISO8601toDate } from "../utils/ISO8601toDate";
 import { LineBreak } from "../utils/LineBreak";
 
 export function PastesDisplay(props: {
-  setSelection: React.Dispatch<React.SetStateAction<IPaste | undefined>>;
+  setSelection: React.Dispatch<React.SetStateAction<number>>;
   setPastes: React.Dispatch<React.SetStateAction<IPaste[]>>;
   pastes: IPaste[];
 }): JSX.Element {
@@ -20,7 +20,7 @@ export function PastesDisplay(props: {
         )}
         <small>{dateStr}</small>
         <LineBreak str={item.body} isShort={true} />
-        <button onClick={() => props.setSelection(item)}>See more</button>
+        <button onClick={() => props.setSelection(item.id)}>See more</button>
       </div>
     );
   };

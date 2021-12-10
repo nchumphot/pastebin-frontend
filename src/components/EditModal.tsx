@@ -1,43 +1,35 @@
-import { useState } from "react";
-import { postData } from "../utils/postData";
-import { fetchData } from "../utils/fetchData";
+import { useEffect, useState } from "react";
+import { handleEdit } from "../utils/handleEdit";
+import { Fragment } from "react";
 import { IPaste } from "../utils/IPaste";
 
-export function PostModal(props: {
-  setPastes: React.Dispatch<React.SetStateAction<IPaste[]>>;
-  pastes: IPaste[];
+export function EditModal(props: {
+  id: number;
+  title: string;
+  body: string;
+  setSelectedPaste: React.Dispatch<React.SetStateAction<IPaste>>;
+  //   pastes: IPaste[];
 }): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
-
-  const handleSubmitPaste = () => {
-    if (body !== "") {
-      postData(title, body).then(() => {
-        fetchData("https://pastebin-c3a8.herokuapp.com/pastes/recent").then(
-          (res) => props.setPastes(res)
-        );
-      });
-      setTitle("");
-      setBody("");
-    } else {
-      window.alert("Cannot submit a paste with an empty body.");
-    }
-  };
-
+  useEffect(() => {
+    setTitle(props.title);
+    setBody(props.body);
+  }, [props.title, props.body]);
   return (
-    <>
+    <Fragment>
       <button
         type="button"
         className="btn btn-primary"
         data-toggle="modal"
-        data-target="#exampleModal"
+        data-target={`#EditModal${props.id}`}
       >
-        Create new
+        Edit
       </button>
 
       <div
         className="modal fade"
-        id="exampleModal"
+        id={`EditModal${props.id}`}
         tabIndex={-1}
         role="dialog"
         aria-labelledby="exampleModalLabel"
@@ -47,7 +39,7 @@ export function PostModal(props: {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Create New Paste
+                Edit Paste
               </h5>
               <button
                 type="button"
@@ -55,8 +47,8 @@ export function PostModal(props: {
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={() => {
-                  setTitle("");
-                  setBody("");
+                  setTitle(props.title);
+                  setBody(props.body);
                 }}
               >
                 <span aria-hidden="true">&times;</span>
@@ -66,7 +58,6 @@ export function PostModal(props: {
               <input
                 type="text"
                 id="titleinput"
-                placeholder="Optional title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -74,7 +65,6 @@ export function PostModal(props: {
               <textarea
                 rows={5}
                 id="bodyinput"
-                placeholder="Paste body here"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
               />
@@ -84,7 +74,15 @@ export function PostModal(props: {
                 type="button"
                 data-dismiss="modal"
                 className="btn btn-primary"
-                onClick={handleSubmitPaste}
+                onClick={() => {
+                  handleEdit(props.id, title, body);
+                  props.setSelectedPaste({
+                    id: props.id,
+                    title: "",
+                    body: "",
+                    creation_date: "",
+                  });
+                }}
               >
                 Add
               </button>
@@ -92,6 +90,6 @@ export function PostModal(props: {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
