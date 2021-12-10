@@ -28,7 +28,7 @@ export function PostModal(props: {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="create-btn"
         data-toggle="modal"
         data-target="#exampleModal"
       >

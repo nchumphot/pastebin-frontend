@@ -20,7 +20,7 @@ export function EditModal(props: {
     <Fragment>
       <button
         type="button"
-        className="btn btn-primary"
+        className="edit-btn"
         data-toggle="modal"
         data-target={`#EditModal${props.id}`}
       >

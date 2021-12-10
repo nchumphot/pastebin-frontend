@@ -74,3 +74,29 @@ header > h1 {
 header > p {
   color: grey;
 }
+
+.delete-btn {
+  background-color: rgb(224, 43, 43);
+  color: white;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+  margin: 5px;
+}
+
+.edit-btn {
+  background-color: rgb(56, 83, 240);
+  color: white;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+  margin: 5px;
+}
+
+.create-btn {
+  background-color: greenyellow;
+  color: black;
+  border-radius: 8px;
+  border-color: black;
+  border-style: solid;
+}
