@@ -20,7 +20,12 @@ export function PastesDisplay(props: {
         )}
         <small>{dateStr}</small>
         <LineBreak str={item.body} isShort={true} />
-        <button onClick={() => props.setSelection(item.id)}>See more</button>
+        <button
+          className="see-more-btn"
+          onClick={() => props.setSelection(item.id)}
+        >
+          See more
+        </button>
       </div>
     );
   };
