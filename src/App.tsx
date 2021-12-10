@@ -9,11 +9,17 @@ import { PageHeader } from "./components/PageHeader";
 import "./App.css";
 
 function App(): JSX.Element {
-  const [selection, setSelection] = useState<IPaste | undefined>();
+  const [selection, setSelection] = useState<number>(0);
   const [pastes, setPastes] = useState<IPaste[]>([]);
 
   useEffect(() => {
-    fetchData("https://pastebin-c3a8.herokuapp.com/pastes/recent", setPastes);
+    const getPastes = async () => {
+      const data = await fetchData(
+        "https://pastebin-c3a8.herokuapp.com/pastes/recent"
+      );
+      setPastes(data);
+    };
+    getPastes();
   }, [pastes]);
 
   return (
