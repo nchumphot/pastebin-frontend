@@ -83,7 +83,7 @@ export function PostModal(props: {
               <button
                 type="button"
                 data-dismiss="modal"
-                className="btn btn-primary"
+                className="add-btn"
                 onClick={handleSubmitPaste}
               >
                 Add
