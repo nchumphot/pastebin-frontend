@@ -48,6 +48,8 @@ export function SelectedPaste(props: {
           setSelectedPaste={setSelectedPaste}
         />
         <button
+          type="button"
+          className="delete-btn"
           onClick={() => {
             handleDelete(props.selection);
             props.setSelection(0);
