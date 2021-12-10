@@ -17,16 +17,17 @@ export function SelectedPaste(props: {
     creation_date: "",
   });
 
-  const getSelectedPaste = async () => {
-    const data = await fetchData(
-      `https://pastebin-c3a8.herokuapp.com/pastes/${props.selection}`
-    );
-    setSelectedPaste(data[0]);
-  };
-
   useEffect(() => {
+    const getSelectedPaste = async () => {
+      const data = await fetchData(
+        `https://pastebin-c3a8.herokuapp.com/pastes/${props.selection}`
+      );
+      if (data.length !== 0) {
+        setSelectedPaste(data[0]);
+      }
+    };
     getSelectedPaste();
-  });
+  }, [props.selection, selectedPaste]);
 
   if (props.selection !== 0) {
     return (
@@ -44,6 +45,7 @@ export function SelectedPaste(props: {
           id={selectedPaste.id}
           title={selectedPaste.title === null ? "" : selectedPaste.title}
           body={selectedPaste.body}
+          setSelectedPaste={setSelectedPaste}
         />
         <button
           onClick={() => {
